@@ -32,6 +32,8 @@ We are planning to load our database using AWS and RDS. After creating RDS, we a
 ## ERD (Entity Relationship Diagram)
 As we are dealing with multiple dataframes, a conceptual diagram was created to keep track of important relationships in our dataset. 
 
+![ERD](https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/ERD.png)
+
 ## Machine Learning Model
 We will be using different machine learning models to predict the video game sales, find the clustering patterns and how it affects the sales, and select the model that yields the best result. The proposed machine learning models are outline below:
 
