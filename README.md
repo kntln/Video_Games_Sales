@@ -41,7 +41,11 @@ We will be using different machine learning models to predict the video game sal
 - Using **`sklearn.linear_model`**'s **`LinearRegression `** we are planning to predict the sales of a video game based on critic score. Hence, our target variable (y) would be Total_Sales while our independent variable (x) would be Critic_Score.
 
 ### Random Forest Regression:
+
+- We are also planning to use Random Forest Regression to predict sales by various factors. For our model draft, our target variable (dependent variable) would be total sales. For our independent variables we are planning to use the following factors: critic score, user score, genre, ESRB rating, platform, year release, and country.
+=======
 - We are also planning to use **`BalancedRandomForestClassifier`** to predict sales by various factors. For our model draft, our target variable (dependent variable) would be total sales. For our independent variables we are planning to use the following factors: critic score, user score, genre, ESRB rating, platform, year release, and country.
+
 
 ### Unsupervised Machine Learning: Discovering Unknown Patterns
 - To determine patterns, we would like to use Unsurpervised learning model. We are planning to apply Principal Component Analysis (PCA) to reduce data dimension. In addition, we would like to use K-means algorithm to determine the clusters.
@@ -55,3 +59,5 @@ For our database mock up example, we have created a sample dataset for critic sc
 ![Sample Dataset](https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/sample_dataset.png)
 
 ![Linear Regression](https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/linear_regression.png)
+
+
