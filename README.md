@@ -54,4 +54,4 @@ For our database mock up example, we have created a sample dataset for critic sc
 
 ![Sample Dataset](https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/sample_dataset.png)
 
-![Linear Regression](https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/sample_dataset.png)
+![Linear Regression](https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/linear_regression.png)
