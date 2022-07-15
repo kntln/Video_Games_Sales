@@ -38,7 +38,7 @@ As we are dealing with multiple dataframes, a conceptual diagram was created to 
 We will be using different machine learning models to predict the video game sales, find the clustering patterns and how it affects the sales, and select the model that yields the best result. The proposed machine learning models are outlined below.
 
 ### Linear Regression
-- Using **`sklearn.linear_model`**'s **`LinearRegression `** we are planning to predict the sales of a video game based on critic score. Hence, our target variable (y) would be Total_Sales while our independent variable (x) would be Critic_Score.
+- Using **`sklearn.linear_model`**'s **`LinearRegression `** we are planning to predict the sales of a video game based on critic score. Hence, our target variable (y) would be Total_Sales while our independent variable (x) would be Critic_Score. 
 
 ### Random Forest Regression:
 
