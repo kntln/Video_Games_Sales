@@ -87,7 +87,7 @@ The following machine learning models that were used are outlined below.
 
 ### Linear Regression
 
-Using **`sklearn.linear_model`**'s **`LinearRegression `** we are wanted to predict the sales of a video game based on critic score.
+Using **`sklearn.linear_model`**'s **`LinearRegression `** we wanted to predict the sales of a video game based on critic score.
 - Model draft: 
     - model = LinearRegression()
     - Target variable (y): Total_Sales
