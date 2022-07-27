@@ -86,8 +86,16 @@ For example, here are the following visualizations:
 The following machine learning models that were used are outlined below.
 
 ### Linear Regression
+<<<<<<< HEAD
 
 Using **`sklearn.linear_model`**'s **`LinearRegression `** we are wanted to predict the sales of a video game based on critic score.
+=======
+- Using **`sklearn.linear_model`**'s **`LinearRegression `** we are planning to predict the sales of a video game based on critic score. Hence, our target variable (y) would be Total_Sales while our independent variable (x) would be Critic_Score. 
+
+### Random Forest Regression:
+
+- We are also planning to use Random Forest Regression to predict sales by various factors. For our model draft, our target variable (dependent variable) would be total sales. For our independent variables we are planning to use the following factors: critic score, user score, genre, ESRB rating, platform, year release, and country.
+>>>>>>> e01c5c5ac400b0b34184fac0c88bb6b9cd9d7a43
 
 - Model draft: 
     - model = LinearRegression()
@@ -203,3 +211,9 @@ Videogames-companies-regions Dataset: https://www.kaggle.com/datasets/andreshg/v
 
 
 
+<<<<<<< HEAD
+=======
+![Linear Regression](https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/linear_regression.png)
+
+
+>>>>>>> e01c5c5ac400b0b34184fac0c88bb6b9cd9d7a43
