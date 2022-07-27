@@ -32,13 +32,13 @@ Then we inserted the sales data and the region data in the Jupyter notebook usin
 
 
 ### Transform:
-We used .count and .columns to review the data. After that we dropped  “Developer_y','NA_Sales','PAL_Sales','JP_Sales','Other_Sales because they are irrelevant to our analysis. We found that total_shipped and global sales also represent the total sales so we added them up and converted it to a new column Total_sales”.
+We used .count and .columns to review the data. After that we dropped “Developer_y','NA_Sales','PAL_Sales','JP_Sales','Other_Sales because they are irrelevant to our analysis. We found that total_shipped and global sales also represent the total sales so we added them up and converted it to a new column Total_sales”.
 
-We found that there are substantial null values for some of the columns so we decided to drop the whole column as well since they are not relevant. They are “ESRB_Rating','Critic_Score','User_Score', and 'Country'
+We found that there are substantial null values for some of the columns so we decided to drop the whole column as well since they are not relevant. They are “ESRB_Rating','Critic_Score','User_Score', and 'Country'.
 
 We also found that there are 35930 rows with $0 sales, so we have to drop them as well since they won’t provide any result when we are doing comparison based on Sales.
 
-We also drop rows only with the NaN value in Developer_x and Year since they only have 17 and 979 null values out of 55792 row
+We also drop rows only with the NaN value in Developer_x and Year since they only have 17 and 979 null values out of 55792 row.
 
 ![Cleaned Dataframe](https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/cleaned_df.png)
 
