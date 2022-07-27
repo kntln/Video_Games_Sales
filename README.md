@@ -45,15 +45,18 @@ We also drop rows only with the NaN value in Developer_x and Year since they onl
 
 ### Load (AWS Connection):
 
-S3 Bucket Links:
-Raw dataset:
-https://video-game-dataset-uot-boot-camp-2022-group-4.s3.us-east-2.amazonaws.com/video-games-developers.csv
-https://video-game-dataset-uot-boot-camp-2022-group-4.s3.us-east-2.amazonaws.com/vgsales-12-4-2019-short.csv
+- S3 Bucket Links:
+    - Raw dataset:
 
+        https://video-game-dataset-uot-boot-camp-2022-group-4.s3.us-east-2.amazonaws.com/video-games-developers.csv
 
-Cleaned Dataset:
-https://video-game-dataset-uot-boot-camp-2022-group-4.s3.us-east-2.amazonaws.com/all_columns_df.csv
-https://video-game-dataset-uot-boot-camp-2022-group-4.s3.us-east-2.amazonaws.com/sales_cleaned.csv
+        https://video-game-dataset-uot-boot-camp-2022-group-4.s3.us-east-2.amazonaws.com/vgsales-12-4-2019-short.csv
+
+    - Cleaned Dataset:
+        
+        https://video-game-dataset-uot-boot-camp-2022-group-4.s3.us-east-2.amazonaws.com/all_columns_df.csv
+        
+        https://video-game-dataset-uot-boot-camp-2022-group-4.s3.us-east-2.amazonaws.com/sales_cleaned.csv
 
 - RDS Config (connect to Postgres): 
 
