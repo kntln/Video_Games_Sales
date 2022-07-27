@@ -55,7 +55,7 @@ We also drop rows only with the NaN value in Developer_x and Year since they onl
     - Cleaned Dataset:
         
         https://video-game-dataset-uot-boot-camp-2022-group-4.s3.us-east-2.amazonaws.com/all_columns_df.csv
-        
+
         https://video-game-dataset-uot-boot-camp-2022-group-4.s3.us-east-2.amazonaws.com/sales_cleaned.csv
 
 - RDS Config (connect to Postgres): 
@@ -82,7 +82,8 @@ For example, here are the following visualizations:
 
 
 ## Machine Learning Model
-We will be using different machine learning models to predict the video game sales, find the clustering patterns and how it affects the sales, and select the model that yields the best result. The following machine learning models that were used are outlined below.
+
+The following machine learning models that were used are outlined below.
 
 ### Linear Regression
 
@@ -103,6 +104,7 @@ Using **`sklearn.linear_model`**'s **`LinearRegression `** we are wanted to pred
     7. Examining the parameters of our model and find the best fit for our red line.
 
 - Results:
+
 There was a positive correlation between Critic Scores and Total Sales in the preliminary test of the Linear Regression model, showing a coefficient model of 0.51, which indicates that the predictive model is improving. Further analysis is needed to confirm this conclusion.
 
 ![Linear Regression](https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/Linear_Regression_Video_Games_Sales.png)
@@ -123,6 +125,7 @@ There was a positive correlation between Critic Scores and Total Sales in the pr
     10. We evaluated the model using the test data and got the accuracy as 0.002. The accuracy is relatively low.
 
 - Results:
+
 It shows the model has an accuracy of 0.002. Model optimization is needed such as reducing features or adding more hidden layers. We could also use other machine learning models.
 
 ![Deep Neural Network Model](https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/Deep_Neural_Network.png)
@@ -147,6 +150,7 @@ It shows the model has an accuracy of 0.002. Model optimization is needed such a
     11. Calculating accuracy score and display result.
 
 - Results:
+
 The model has an accuracy of 1.0 which shows that the model is overfitted.One of the reasons it happens when a function is over trained itself on the data. Couple ways to handle overfitting: we can reduce the number of elements in the hidden layers or remove certain features.
 
 ![Decision Tree](https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/Decision_Tree.png)
@@ -177,6 +181,7 @@ To predict whether the critic score will be high or low based on different featu
     9. Evaluate the model with the accuracy score and classification Report
 
 - Results:
+
 The `RandomForestClassifier` model has an accuracy of 0.72, however, the precision and recall values for the low critic score category are considerably lower than those of the high critic score category, this difference may result from the higher number of variables in the high critic score group (2,435 variables), which is double of the variables in the low critic score (1,144 variables).
 
 The model accuracy for `BalancedRandomForestClassifier` is quite similar to RandomForestClassifier model, however it gives higher recall values for the low critic score category despite the slight drop in precision.
