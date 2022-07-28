@@ -125,7 +125,7 @@ There was a positive correlation between Critic Scores and Total Sales in the pr
 
 - Results:
 
-It shows the model has an accuracy of 0.002. Model optimization is needed such as reducing features or adding more hidden layers. We could also use other machine learning models.
+It shows that the model has an accuracy of 0.002. Model optimization is needed such as reducing features or adding more hidden layers. We could also use other machine learning models.
 
 ![Deep Neural Network Model](https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/Deep_Neural_Network.png)
 
