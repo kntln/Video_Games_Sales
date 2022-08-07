@@ -77,7 +77,8 @@ We also drop rows only with the NaN value in Developer_x and Year since they onl
 
 For example, here are the following visualizations:
 
-![Critic Score vs Total Sales](https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/TotalSales_CriticSccore_Year_Genre.png)
+![updatedplot](https://user-images.githubusercontent.com/99752443/183297768-ab63ae57-2d73-4f97-ad0e-599d01ce43bf.png)
+
 
 ![Publisher vs.Total Sales](https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/total_sales_vs_publisher.png)
 
