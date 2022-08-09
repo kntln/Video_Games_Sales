@@ -86,7 +86,7 @@ For example, here are the following visualizations:
 
 ## Machine Learning Models
 
-The goal of our machine learning model is to predict the video games sales based on different variables such as their critic score, genre, developer, etc., as well as, to explore the relationships between them and uncover the key factors that influence the sales.
+**Goal:** The goal of our machine learning model is to predict the video games sales based on different variables such as their critic score, genre, developer, etc., as well as, to explore the relationships between them and uncover the key factors that influence the sales.
 
 Several machine learning models have been used in attempts to find the one that yields the best results, high accuracy and minimized errors, as listed in the following outline.
 
