@@ -88,7 +88,7 @@ The following image show the cleaned dataframe, which will be used as an input f
 
 For example, here are the following visualizations:
 
-![Critic Score vs Total Sales](https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/TotalSales_CriticSccore_Year_Genre.png)
+![colorful_graph](https://user-images.githubusercontent.com/99752443/184003335-02fe5431-60fb-452f-a1b8-907879e1b0f9.png)
 
 ![Publisher vs.Total Sales](https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/total_sales_vs_publisher.png)
 
