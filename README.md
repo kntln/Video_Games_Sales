@@ -2,7 +2,7 @@
 ![Video Games](https://miro.medium.com/max/1400/1*rTAjrwwt0Jze_3MqHQ5MfA.jpeg)
 
 ## Google Slide for Presentation 
-Here is the link for our presentation: [Google Slide Link](https://docs.google.com/presentation/d/1WJ9KND6rJ4jChH-hzu2TRalP4TSNRDpO0MVrfZjxOdw/edit?usp=sharing)
+Here is the link for our presentation: [Google Slide Link](https://docs.google.com/presentation/d/1twUCAIfKZqCbCHIMNUtyjAzr2eXaNVMO/edit?usp=sharing&ouid=115395630661058117377&rtpof=true&sd=true)
 
 ## Overview of the Project
 
