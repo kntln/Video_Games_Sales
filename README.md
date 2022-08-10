@@ -291,9 +291,9 @@ From the above `LinearRegression` model's analysis which shows that there is a p
 
 The following table shows the performances of the random forest regression model 1 and model 2.
 
-||Regression Model 1|Regression Model 2|
+||RF Regression Model 1|RF Regression Model 2|
 |:-----:|:-----:|:-----:|
-|Feature Modification|Drop all missing values in critic score column|Substitute missing values in critic score column <br />with the average critic score grouped by developers|
+|Feature Modification|Drop all missing values in critic score column|Substitute missing values in critic score column with the average critic score grouped by developers|
 |No. of input rows|4,568|11,293|
 |Model Accuracy|89.95%|86.14%|
 |Mean Absolute Error|0.935|0.573|
