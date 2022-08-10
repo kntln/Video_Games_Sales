@@ -1,6 +1,19 @@
 # Video Games Sales Analysis
 ![Video Games](https://miro.medium.com/max/1400/1*rTAjrwwt0Jze_3MqHQ5MfA.jpeg)
 
+## Table of Contents
++ [Google Slide for Presentation](https://github.com/kntln/Video_Games_Sales/tree/main#google-slide-for-presentation)
++ [Overview of the Project](https://github.com/kntln/Video_Games_Sales/tree/main#overview-of-the-project)
++ [ERD (Entity Relationship Diagram)](https://github.com/kntln/Video_Games_Sales/tree/main#erd-entity-relationship-diagram)
++ [ETL Process](https://github.com/kntln/Video_Games_Sales/tree/main#etl-process)
++ [Tableau Visualization](https://github.com/kntln/Video_Games_Sales/tree/main#tableau-visualization)
++ [Machine Learning Models](https://github.com/kntln/Video_Games_Sales/tree/main#machine-learning-models)
+	+ [Feature Engineering](https://github.com/kntln/Video_Games_Sales/tree/main#feature-engineering)
+	+ [ML Models Details](https://github.com/kntln/Video_Games_Sales/tree/main#ml-models-details)
+	+ [Final ML Models](https://github.com/kntln/Video_Games_Sales/tree/main#final-ml-models)
++ [Conclusion](https://github.com/kntln/Video_Games_Sales/tree/main#conclusion)
++ [Resources](https://github.com/kntln/Video_Games_Sales/tree/main#resources)
+
 ## Google Slide for Presentation 
 Here is the link for our presentation: [Google Slide Link](https://docs.google.com/presentation/d/1twUCAIfKZqCbCHIMNUtyjAzr2eXaNVMO/edit?usp=sharing&ouid=115395630661058117377&rtpof=true&sd=true)
 
@@ -19,15 +32,15 @@ As we are dealing with multiple dataframes, a conceptual diagram was created to 
 ![ERD](https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/ERD.png)
 
 
-## ETL
+## ETL Process
 ![ETL](https://github.com/kntln/Movies-ETL/blob/main/Resources/ETL.png)
 
 ### Extract:
 The raw datasets that will be used for this analysis are:
 
-Video Game Sales Dataset: https://www.kaggle.com/datasets/ashaheedq/video-games-sales-2019
++ Video Game Sales Dataset: https://www.kaggle.com/datasets/ashaheedq/video-games-sales-2019
 
-Videogames-companies-regions Dataset: https://www.kaggle.com/datasets/andreshg/videogamescompaniesregions
++ Videogames-companies-regions Dataset: https://www.kaggle.com/datasets/andreshg/videogamescompaniesregions
 
 First we downloaded the datasets and placed them in the Resources folder. 
 
@@ -35,41 +48,39 @@ Then we inserted the sales data and the region data in the Jupyter notebook usin
 
 
 ### Transform:
-We used .count and .columns to review the data. After that we dropped “Developer_y','NA_Sales','PAL_Sales','JP_Sales','Other_Sales because they are irrelevant to our analysis. We found that total_shipped and global sales also represent the total sales so we added them up and converted it to a new column Total_sales”.
+We used `.count` and `.columns` to review the data. After that the 'Developer_y', 'NA_Sales', 'PAL_Sales', 'JP_Sales', 'Other_Sales' are dropped because they are irrelevant to our analysis. We found that 'total_shipped' and 'global sales' also represent the total sales so we added them up and converted it to a new column 'Total_sales'.
 
-We found that there are substantial null values for some of the columns so we decided to drop the whole column as well since they are not relevant. They are “ESRB_Rating','Critic_Score','User_Score', and 'Country'.
+There are substantial null values for some of the columns so the entire column are dropped as well as they are irrelevant. The following columns that are dropped, as of the preliminary dataset: 'ESRB_Rating', 'Critic_Score', 'User_Score', and 'Country'.
 
 We also found that there are 35930 rows with $0 sales, so we have to drop them as well since they won’t provide any result when we are doing comparison based on Sales.
 
-We also drop rows only with the NaN value in Developer_x and Year since they only have 17 and 979 null values out of 55792 row.
+We also drop rows that have the NaN value in 'Developer_x' and 'Year' columns since they only have 17 and 979 null values out of 55792 row.
+
+The following image show the cleaned dataframe, which will be used as an input for our machince learning model.
 
 ![Cleaned Dataframe](https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/cleaned_df.png)
 
 
 ### Load (AWS Connection):
 
-- S3 Bucket Links:
-    - Raw dataset:
+#### S3 Bucket Links:
+- Raw dataset:
+	+ [AWS-S3_video-games-developers.csv](https://video-game-dataset-uot-boot-camp-2022-group-4.s3.us-east-2.amazonaws.com/video-games-developers.csv)
+	+ [AWS-S3_vgsales-12-4-2019-short.csv](https://video-game-dataset-uot-boot-camp-2022-group-4.s3.us-east-2.amazonaws.com/vgsales-12-4-2019-short.csv)
+- Cleaned Dataset: 
+	+ [AWS-S3_all_columns_df.csv](https://video-game-dataset-uot-boot-camp-2022-group-4.s3.us-east-2.amazonaws.com/all_columns_df.csv)
+	+ [AWS-S3_sales_cleaned.csv](https://video-game-dataset-uot-boot-camp-2022-group-4.s3.us-east-2.amazonaws.com/sales_cleaned.csv)
+	
 
-        https://video-game-dataset-uot-boot-camp-2022-group-4.s3.us-east-2.amazonaws.com/video-games-developers.csv
+#### **RDS Config** (connection to Postgres): 
 
-        https://video-game-dataset-uot-boot-camp-2022-group-4.s3.us-east-2.amazonaws.com/vgsales-12-4-2019-short.csv
-
-    - Cleaned Dataset:
-        
-        https://video-game-dataset-uot-boot-camp-2022-group-4.s3.us-east-2.amazonaws.com/all_columns_df.csv
-
-        https://video-game-dataset-uot-boot-camp-2022-group-4.s3.us-east-2.amazonaws.com/sales_cleaned.csv
-
-- RDS Config (connect to Postgres): 
-
-![Initial Databse](https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/postgres.png)
+<img src= https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/postgres.png width="50%" height="50%">
 
 - Connect Postgres & RDS (After creating table in Postgres)
 
-![Configure Setup for RDS](https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/postgres2.png)
+<img src= https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/postgres2.png width="100%" height="100%">
+<img src= https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/postgres3.png width="70%" height="70%">
 
-![Connect RDS to Postgress](https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/postgres3.png)
 
 ## Tableau Visualization
 
@@ -77,36 +88,83 @@ We also drop rows only with the NaN value in Developer_x and Year since they onl
 
 For example, here are the following visualizations:
 
-![updatedplot](https://user-images.githubusercontent.com/99752443/183297768-ab63ae57-2d73-4f97-ad0e-599d01ce43bf.png)
-
+![Critic Score vs Total Sales](https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/TotalSales_CriticSccore_Year_Genre.png)
 
 ![Publisher vs.Total Sales](https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/total_sales_vs_publisher.png)
 
 ![Country Vs. Total sales](https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/total_sales_vs_country.png)
 
 
-## Machine Learning Model
+## Machine Learning Models
 
-The following machine learning models that were used are outlined below.
+**Goal:** The goal of our machine learning model is to **predict the video games sales** based on different variables such as their critic score, genre, developer, etc., as well as, to explore the relationships between them and uncover the key factors that influence the sales.
 
-### Linear Regression
+Several machine learning models have been used in attempts to find the one that yields the best results, high accuracy and minimized errors, as listed in the following outline.
+
+**Model outline:**
++ **Regression model:** predict the number of games sales
+	+ Linear Regression
+	+ Random Forest Regression
+
++ **Classification model:** predict the classes of games
+	+ Deep Neural Network
+	+ Decision Tree
+	+ Random Forest Classifier
+
+---
+### Feature Engineering
+#### **Handling the missing data:**
+
+There are a total of 19,862 rows in the cleaned dataset which will be used as an input dataset. The critic score, which seems to have a strong correlation to the sales, however, contains 76.3% missing values. To avoid dropping the entire 'Critic_Score' column, the missing critic score values will be replaced with an average critic score of its developer's group. In other words, the games are grouped by their developer, retrieved its average critic score value, then replace the missing values with the calculated ones matches by their developer name.
+
+<img src= https://github.com/kntln/Video_Games_Sales/blob/asama_branch/Images/ML_images/avg_critic_score_developer.png width="40%" height="40%">
+<img src= https://github.com/kntln/Video_Games_Sales/blob/asama_branch/Images/ML_images/df_critic_score_replaced.png height="50%">
+
+#### **Creating classes for numerical data type (total sales and critic score):**
+
+To fit the dataset into the classification models, the 'Total_Sales' and 'Critic_Score' which are numerical values are filtered into classes and added to the new columns. The games are first binned into two groups based on their critic scores (low/high) for the preliminary model fitting. For the final classification model, we will classify the games by their total sales (low/medium/high) instead of their critic scores.
+
++ **Total Sales:** additional 'Total_Sales_Class' column.
+The Total_Sales is categorized into 3 classes: low, medium, high. 
+<br /><br />Based on the number of total sales where the average is around 0.5 milliions, the binning is as follow:
+    - **Low:** Total sales < 1 millions
+    - **Medium:** Total sales higher than 1 millions and less than 10 millions
+    - **High:** Total sales > 10 millions
+    
+<img src= https://github.com/kntln/Video_Games_Sales/blob/asama_branch/Images/ML_images/df_total_sales_classes.png width="90%" height="90%">
+
++ **Critic Score** (for preliminary model): additional 'Critic_Score_Status' or 'Successful' column 
+The Critic_Score is filtered into 2 classes: low or high (unsuccessful or successful)
+<br /><br />Based on the average critic score which is approximately 7.2, the binning is as stated: 
+    - **Low (unsuccessful) group:** Critic scores < 7
+    - **High (successful) group:** Critic scores equal to and higher than 7.    
+---
+### ML Models Details
+The following details on machine learning models that were used are outlined below.
+(Listed from preliminary models to final models)
+
+### 1. Linear Regression
 
 Using **`sklearn.linear_model`**'s **`LinearRegression `** we wanted to predict the sales of a video game based on critic score.
-- Model draft: 
++ **Code:** [Total_Sales_VS_Critic_Score.ipynb](https://github.com/kntln/Video_Games_Sales/blob/main/Total_Sales_VS_Critic_Score.ipynb)
+- **Model draft:**
     - model = LinearRegression()
     - Target variable (y): Total_Sales
     - X: Critic_Score
 
-- We are also planning to use Random Forest Regression to predict sales by various factors. For our model draft, our target variable (dependent variable) would be total sales. For our independent variables we are planning to use the following factors: critic score, user score, genre, ESRB rating, platform, year release, and country.
+- **Results:**
 
 There was a positive correlation between Critic Scores and Total Sales in the preliminary test of the Linear Regression model, showing a coefficient model of 0.51, which indicates that the predictive model is improving. Further analysis is needed to confirm this conclusion.
 
 ![Linear Regression](https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/Linear_Regression_Video_Games_Sales.png)
 ![Linear Regression Coefficient](https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/Linear_Regression_Coefficient.png)
 
-### Deep Neural Network Model
+- We are also planning to use Random Forest Regression to predict sales by various factors. For our model draft, our target variable (dependent variable) would be total sales. For our independent variables we are planning to use the following factors: critic score, user score, genre, ESRB rating, platform, year release, and country.
 
-- Steps:
+### 2. Deep Neural Network Model
++ **Code:** [Video_game_deep_neural_net_optimization.ipynb](https://github.com/kntln/Video_Games_Sales/blob/erics_branch/Video_game_deep_neural_net_optimization.ipynb)
+
+- **Steps:**
     1. We first load our dataset in dataframe from “all_column.csv” 
     2. We use .nunique to find how many unique values in each column.
     3. We drop the non-beneficial ID columns - Rank, Name, Year.
@@ -118,19 +176,21 @@ There was a positive correlation between Critic Scores and Total Sales in the pr
     9. We compile the model and create a callback that saves the model’s weights every 5 epochs, then we train the model.
     10. We evaluated the model using the test data and got the accuracy as 0.002. The accuracy is relatively low.
 
-- Results:
+- **Results:**
 
 It shows that the model has an accuracy of 0.002. Model optimization is needed such as reducing features or adding more hidden layers. We could also use other machine learning models.
 
 ![Deep Neural Network Model](https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/Deep_Neural_Network.png)
 
-### Decision Tree
-- Model Draft:
+### 3. Decision Tree
++ **Code:** [Video_game_ Decision_Tree.ipynb](https://github.com/kntln/Video_Games_Sales/blob/erics_branch/Video_game_%20Decision_Tree.ipynb)
+
+- **Model Draft:**
     - Target Variable and Features:
     - Target variable (y): “Successful”
     - X: Genre', 'ESRB_Rating', 'Platform', 'Publisher', 'Developer_x', 'Country
 
-- Steps:
+- **Steps:**
     1. We have prepared the data using the same process as the deep neural network model.
     2. Create “Successful” column for Critic Score >= 7.0
     3. Encoded all object into numerical values by `OneHotEncoder`
@@ -143,38 +203,36 @@ It shows that the model has an accuracy of 0.002. Model optimization is needed s
     10. Calculating the confusion matrix, create dataframe from confusion matrix.
     11. Calculating accuracy score and display result.
 
-- Results:
+- **Results:**
 
-The model has an accuracy of 1.0 which shows that the model is overfitted.One of the reasons it happens when a function is over trained itself on the data. Couple ways to handle overfitting: we can reduce the number of elements in the hidden layers or remove certain features.
+The model has an accuracy of 1.0 which shows that the model is overfitted. One of the reasons it happens when a function is over trained itself on the data. Couple ways to handle overfitting: we can reduce the number of elements in the hidden layers or remove certain features.
 
 ![Decision Tree](https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/Decision_Tree.png)
 
-### Random Forest Model:
-To predict whether the critic score will be high or low based on different features
+### 4. Random Forest Classifier (Critic Score):
+Predict whether the critic score will be high or low based on different features
 
-- Target Variable and Features:
+- **Target Variable and Features:**
     - Target variable (y) = Critic_Score_Status (low/high)
     - X = Genre, ESRB_Rating, Platform, Publisher, Developer_x, Country, Total_Sales
 
-- Machine Learning Models:
+- **Machine Learning Models:**
     - rf_model = `RandomForestClassifier`
     - brf_model = `BalancedRandomForestClassifier`
     - eec_model = `EasyEnsembleClassifier`
 
-- Steps:
+- **Steps:**
     1. Preprocessing data, dropping unnecessary columns.
     2. Drop NaNs values
     3. Create an additional 'Critic_Score_Status' column labeling the game by their critic score, the critic score which is higher than or equal to 7 is labeled with high, otherwise is labeled with low.
     4. Bucket the categorical columns to reduce the variables. Keeping top 10, and bin others as 'other'.
     5. Encode the categorical variable using `OneHotEncoder` method
-    6. Assign target variable and features:
-        -Target variable (y) = Critic_Score_Status (low/high)
-        -Features (X) = Genre, ESRB_Rating, Platform, Publisher, Developer_x, Country, Total_Sales
+    6. Assign target variable and features
     7. Split the dataset into training and testing and scale the data.
     8. Create the ML models then train and test the model.
     9. Evaluate the model with the accuracy score and classification Report
 
-- Results:
+- **Results:**
 
 The `RandomForestClassifier` model has an accuracy of 0.72, however, the precision and recall values for the low critic score category are considerably lower than those of the high critic score category, this difference may result from the higher number of variables in the high critic score group (2,435 variables), which is double of the variables in the low critic score (1,144 variables).
 
@@ -182,16 +240,115 @@ The model accuracy for `BalancedRandomForestClassifier` is quite similar to Rand
 
 Another issue for this model is that there is a significantly high number of NaN values in the Critic_Score column (15,156 out of 19862 rows), after dropping all NaNs values of every columns, the number of input variables to be used in training and testing the model falls to only 3,579. One consideration in optimizing the model is to see the data distribution and find a way to correlate NaN critic score values to high/low groups instead of dropping them in order to increase the number of inputs.
 
-![Random Forest Classifier](https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/Random_Forest.png)
+<img src= https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/Random_Forest.png width="60%" height="60%"><img src= https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/Balanced_Classifier.png width="80%" height="80%">
 
-![Balanced Random Forest Classifier](https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/Balanced_Classifier.png)
+---
+### Final ML Models
+The final machine learning models will be tested with two versions of the input dataset to observe the changes in the model performances:
+- **Input dataframe 1:** dropped all missing critic score values
+- **Input dataframe 2:** replaced all missing critic score values with groups' average score
+
+### 1. Random Forest Classifier (Total Sales)
++ **Code:** 
+    + [ML_RandomForestClassifier_1.ipynb](https://github.com/kntln/Video_Games_Sales/blob/main/ML_RandomForestClassifier_1.ipynb)
+    + [ML_RandomForestClassifier_2_with_feature_engineering.ipynb](https://github.com/kntln/Video_Games_Sales/blob/main/ML_RandomForestClassifier_2_with_feature_engineering.ipynb)
+    + [ML_Random_Forest_Classifier_Low_Total_Sales_only.ipynb](https://github.com/kntln/Video_Games_Sales/blob/main/ML_Random_Forest_Classifier_Low_Total_Sales_only.ipynb) (additional analysis on low sales class data only)
+
+The games classes are categorized by their total sales into in high, medium, and low sales classes, instead of being classified by critic score values as of the previous preliminary model. For the model 2, the missing critic score values are also replaced by an average critic score (calculated when grouped by their developers).
+
+**Target variable and features:**
+- **Target variable (y) = Total_Sales_Class (low, medium, high)**
+- X = Critic_Score, Genre, ESRB_Rating, Platform, Publisher, Developer_x
+
+**Result:**
+
+The model 2 accuracy increases to 84.3% when the feature engineering is applied on the input data. The precision and recall values also rises for the low sales class, this may due to an increase in the input rows.
+
+The following images show the classification report of model 1 where all missing critic score values are dropped (left) and model 2, where the missing critic score values are replaced by an average group values (right).
+
+<img src= https://github.com/kntln/Video_Games_Sales/blob/asama_branch/Images/ML_images/rfc1_report.png width="44%" height="44%"><img src= https://github.com/kntln/Video_Games_Sales/blob/asama_branch/Images/ML_images/rfc2_report.png width="50%" height="50%">
+
+**Feature Importance:**
+
+The critic score dominates the feature importance of both models, with 40.8% for the feature-engineered model 2, meaning that the critic score has a majoy impact on the predicted sales values when compare to other variables.
+
+The following images show the feature importance of classifier model 1 where all missing critic score values are dropped (left), and model 2 where the missing critic score values are replaced by an average group values (right).
+
+<img src= https://github.com/kntln/Video_Games_Sales/blob/asama_branch/Images/ML_images/rfc1_features.png width="48%" height="48%"><img src= https://github.com/kntln/Video_Games_Sales/blob/asama_branch/Images/ML_images/rfc2_features.png width="50%" height="50%">
+
+### 2. Random Forest Regression 
++ **Code:** 
+    + [ML_RandomForestRegression_1.ipynb](https://github.com/kntln/Video_Games_Sales/blob/main/ML_RandomForestRegression_1.ipynb)
+    + [ML_RandomForestRegression_2_with_feature_engineering.ipynb](https://github.com/kntln/Video_Games_Sales/blob/main/ML_RandomForestRegression_2_with_feature_engineering.ipynb)
+
+From the above `LinearRegression` model's analysis which shows that there is a positive correlation between the total sales and the critic scores, the `RandomForestRegressor` model will be used to predict the number of total sales (in millions) from multiple features. This analysis will compare two versions of input variables (with and without feature engineering to replace the missing critic score values).
+
+**Target variable and features:**
+- **Target variable (y) = Total_Sales (in millions)**
+- X = Critic_Score, Genre, ESRB_Rating, Platform, Publisher, Developer_x
+
+**Results:**
+
+The following table shows the performances of the random forest regression model 1 and model 2.
+
+||Regression Model 1|Regression Model 2|
+|:-----:|:-----:|:-----:|
+|Feature Modification|Drop all missing values in critic score column|Substitute missing values in critic score column <br />with the average critic score grouped by developers|
+|No. of input rows|4,568|11,293|
+|Model Accuracy|89.95%|86.14%|
+|Mean Absolute Error|0.935|0.573|
+|Mean Square Error|3.815|1.700|
+|Root Mean Square Error|1.953|1.304|
+
+Model 2 with the engineered critic score values yields considerably less errors (MSE reduces by 55%) despite the slight drop in the model accuracy. This may result from a much higher number of input rows which help expand the data variety for training and testing the model.
+
+**Feature Importance:**
+
+The following images show the feature importance of regressor model 1 where all missing critic score values are dropped (left), and model 2 where the missing critic score values are replaced by an average group values (right).
+
+<img src= https://github.com/kntln/Video_Games_Sales/blob/asama_branch/Images/ML_images/rfr1_features.png width="50%" height="50%"><img src= https://github.com/kntln/Video_Games_Sales/blob/asama_branch/Images/ML_images/rfr2_features.png width="50%" height="50%">
+
+**Actual Sales vs Predicted Sales:**
+
+The images below are the plot of the actual sales values vs the predicted sales value, which are performed by model 1 (above) and model 2 (below). The graph is plotted in a log scale for the readability as the values are highly diverse.
+The closer the values are to the red diagonal dash line, the higher the accuracy. If the values are above the red line (top-left side), the predictions are overfitted, likewise, if the values that fall below the red line (on the bottom-right side) are the underfitted predictions.
+
+The highly saturated values around the red dash line, where the predictions are most accurated, are between 0.14 millions and 1.7 millions.
+
+<img src= https://github.com/kntln/Video_Games_Sales/blob/asama_branch/Images/ML_images/rfr1_actual_predicted_plot.png width="80%" height="80%">
+<img src= https://github.com/kntln/Video_Games_Sales/blob/asama_branch/Images/ML_images/rfr2_actual_predicted.png width="80%" height="80%">
+
+**Prediction Error Plot:**
+
+The prediction error plot shows the difference between the predictions and the actual values (predictions - actual value) of each game (by their index). The zero-red line means the predictions is 100% accurate.
+
+<img src= https://github.com/kntln/Video_Games_Sales/blob/asama_branch/Images/ML_images/rfr1_error_plot.png width="80%" height="80%">
+<img src= https://github.com/kntln/Video_Games_Sales/blob/asama_branch/Images/ML_images/rfr2_error_plot.png width="80%" height="80%">
+
+## Conclusion
++ Characteristics of the high generating game sales:
+	+ High critic scores
+	+ Action as the genre
+	+ ESRB rating of “E” (Everyone)
+	+ Nintendo as the publisher
++ Our machine learning models with the random forest algorithm, `RandomForestRegressor` and `RandomForestClassifier`, are able to predict the game sales with the accuracy of 86.14% and 84.3%, respectively. Their top feature importance that contributes to the predicted sales are as shown in the following table. 
+
+**Top Feature Importance Summary**
+|Random Forest Regressor|Random Forest Classifier|
+|-----|-----|
+|1. Critic score (33%)<br />2. Developer-Nintendo (11%)<br />3. Genre-Sport (9.5%)|1. Critic score (40.8%)<br />2. Publisher-Nintendo (3.6%)<br />3. Platform-PS2 (1.9%)|
+
++ **Challenges:**
+	+ 76% of the critic score values are missing (NaN values), and two ways of handling the missing data were utilized in our analysis, dropped all missing values and replaced the missing values with the average critic score, despite the high accuracy of our model prediction, both ways can potentially impact the reliability of the analysis. 
+	+ Our target variable (video games sales) is numerical by nature, as such there are some limitations in terms of the machine learning classification models. After we deployed the feature engineering to classify sales into low, medium, and high classes, the majority of the data were in low sales classes (87.7%), as a result, there were not quite enough data to train and test the model for the medium and high sale classes.
+	+ There was a discrepancy in our machine learning results, and the data analysis. Based on our machine learning regression model, the genre sports is one of the top important feature that contributes to total sales, yet, based on our analysis, action generated the most sales. This discrepancy may due to the outlier in the input sales value, which requires additional data preprocessing and further analysis.
+	+ **Machine learning model optimizations:** applying further data preprocessing techniques on the input data to handle outliers and missing values, using hyperparameter tuning and cross-validation for the better model performance, as well as collecting additional data on games sales and features.
 
 ## Resources
-Software: Python 3.10, Conda 4.13, jupyter notebook 6.4.11
++ **Software:** Python 3.10, Conda 4.13, jupyter notebook 6.4.11
 
-Data tools and library: SQLAlchemy, numpy, panda, matplotlib, scikit-learn, Tableau.
++ **Data tools and library:** SQLAlchemy, numpy, panda, matplotlib, scikit-learn, Tableau
 
-Video Game Sales Dataset: https://www.kaggle.com/datasets/ashaheedq/video-games-sales-2019
++ **Video Game Sales Dataset:** [video-games-sales-2019](https://www.kaggle.com/datasets/ashaheedq/video-games-sales-2019)
 
-Videogames-companies-regions Dataset: https://www.kaggle.com/datasets/andreshg/videogamescompaniesregions
-
++ **Video Game with companies-regions Dataset:** [video-games-companies-regions](https://www.kaggle.com/datasets/andreshg/videogamescompaniesregions)
