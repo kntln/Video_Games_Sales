@@ -262,7 +262,7 @@ The games classes are categorized by their total sales into in high, medium, and
 
 **Result:**
 
-The model 2 accuracy increases to 84.3% when the feature engineering is applied on the input data. The precision and recall values also rises for the low sales class, this may due to an increase in the input rows.
+The model 2 accuracy increases to 84.3% when the feature engineering is applied on the input data. The precision and recall values also rises for the low sales class, this may due to an increase in the input rows. However, due to the data imbalance, further optimization is needed to increase the sampling of the medium and high sale classes.
 
 The following images show the classification report of model 1 where all missing critic score values are dropped (left) and model 2, where the missing critic score values are replaced by an average group values (right).
 
@@ -331,7 +331,7 @@ The prediction error plot shows the difference between the predictions and the a
 	+ Action as the genre
 	+ ESRB rating of “E” (Everyone)
 	+ Nintendo as the publisher
-+ Our machine learning models with the random forest algorithm, `RandomForestRegressor` and `RandomForestClassifier`, are able to predict the game sales with the accuracy of 86.14% and 84.3%, respectively. Their top feature importance that contributes to the predicted sales are as shown in the following table. 
++ Our machine learning models with the random forest algorithm, `RandomForestRegressor` and `RandomForestClassifier`, are able to predict the game sales with the accuracy of 86.14% and 84.3%, respectively. However, due to the imbalance in the sales data where most sales are less than 1 millions, the best model for our anaysis is the `RandomForestRegressor` which predicts the continuous number of sales. Both of the models' top feature importance that contributes to the predicted sales are as shown in the following table. 
 
 **Top Feature Importance Summary**
 |Random Forest Regressor|Random Forest Classifier|
@@ -342,7 +342,7 @@ The prediction error plot shows the difference between the predictions and the a
 	+ 76% of the critic score values are missing (NaN values), and two ways of handling the missing data were utilized in our analysis, dropped all missing values and replaced the missing values with the average critic score, despite the high accuracy of our model prediction, both ways can potentially impact the reliability of the analysis. 
 	+ Our target variable (video games sales) is numerical by nature, as such there are some limitations in terms of the machine learning classification models. After we deployed the feature engineering to classify sales into low, medium, and high classes, the majority of the data were in low sales classes (87.7%), as a result, there were not quite enough data to train and test the model for the medium and high sale classes.
 	+ There was a discrepancy in our machine learning results, and the data analysis. Based on our machine learning regression model, the genre sports is one of the top important feature that contributes to total sales, yet, based on our analysis, action generated the most sales. This discrepancy may due to the outlier in the input sales value, which requires additional data preprocessing and further analysis.
-	+ **Machine learning model optimizations:** applying further data preprocessing techniques on the input data to handle outliers and missing values, using hyperparameter tuning and cross-validation for the better model performance, as well as collecting additional data on games sales and features.
+	+ **Machine learning model optimizations:** applying further data preprocessing techniques on the input data to handle outliers, missing values, data imbalances, using hyperparameter tuning and cross-validation for the better model performance, as well as collecting additional data on games sales and features.
 
 ## Resources
 + **Software:** Python 3.10, Conda 4.13, jupyter notebook 6.4.11
