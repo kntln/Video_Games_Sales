@@ -1,6 +1,19 @@
 # Video Games Sales Analysis
 ![Video Games](https://miro.medium.com/max/1400/1*rTAjrwwt0Jze_3MqHQ5MfA.jpeg)
 
+## Table of Contents
++ [Google Slide for Presentation](https://github.com/kntln/Video_Games_Sales/tree/main#google-slide-for-presentation)
++ [Overview of the Project](https://github.com/kntln/Video_Games_Sales/tree/main#overview-of-the-project)
++ [ERD (Entity Relationship Diagram)](https://github.com/kntln/Video_Games_Sales/tree/main#erd-entity-relationship-diagram)
++ [ETL Process](https://github.com/kntln/Video_Games_Sales/tree/main#etl-process)
++ [Tableau Visualization](https://github.com/kntln/Video_Games_Sales/tree/main#tableau-visualization)
++ [Machine Learning Models](https://github.com/kntln/Video_Games_Sales/tree/main#machine-learning-models)
+	+ [Feature Engineering](https://github.com/kntln/Video_Games_Sales/tree/main#feature-engineering)
+	+ [ML Models Details](https://github.com/kntln/Video_Games_Sales/tree/main#ml-models-details)
+	+ [Final ML Models](https://github.com/kntln/Video_Games_Sales/tree/main#final-ml-models)
++ [Conclusion](https://github.com/kntln/Video_Games_Sales/tree/main#conclusion)
++ [Resources](https://github.com/kntln/Video_Games_Sales/tree/main#resources)
+
 ## Google Slide for Presentation 
 Here is the link for our presentation: [Google Slide Link](https://docs.google.com/presentation/d/1twUCAIfKZqCbCHIMNUtyjAzr2eXaNVMO/edit?usp=sharing&ouid=115395630661058117377&rtpof=true&sd=true)
 
@@ -227,7 +240,7 @@ The model accuracy for `BalancedRandomForestClassifier` is quite similar to Rand
 
 Another issue for this model is that there is a significantly high number of NaN values in the Critic_Score column (15,156 out of 19862 rows), after dropping all NaNs values of every columns, the number of input variables to be used in training and testing the model falls to only 3,579. One consideration in optimizing the model is to see the data distribution and find a way to correlate NaN critic score values to high/low groups instead of dropping them in order to increase the number of inputs.
 
-<img src= https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/Random_Forest.png width="50%" height="50%"><img src= https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/Balanced_Classifier.png width="70%" height="70%">
+<img src= https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/Random_Forest.png width="60%" height="60%"><img src= https://github.com/kntln/Video_Games_Sales/blob/karens_branch/figures/Balanced_Classifier.png width="80%" height="80%">
 
 ---
 ### Final ML Models
